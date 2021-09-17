@@ -1,2 +1,2 @@
 # queshartes.github.io
-# various web learning projects
+# a place for me to learn web coding
