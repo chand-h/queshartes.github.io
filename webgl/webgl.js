@@ -1,4 +1,4 @@
-//
+// render a triangle in webgl
 var vertexShaderText = 
 `
 precision mediump float;
@@ -113,7 +113,7 @@ var InitDemo = function () {
   gl.enableVertexAttribArray(positionAttribLocation);
   gl.enableVertexAttribArray(colorAttribLocation);
   
-  // main render loop
+  // main render code
   
   gl.useProgram(program);
   gl.drawArrays(gl.TRIANGLES, 0, 3);
