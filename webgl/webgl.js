@@ -1,3 +1,4 @@
+//
 var vertexShaderText = 
 `
 precision mediump float;
