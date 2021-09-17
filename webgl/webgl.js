@@ -20,7 +20,7 @@ var fragmentShaderText =
 '}'
 ].join('\n');
 
-var InitDemo() = function () {
+var InitDemo = function () {
   
   // init
   var canvas = document.getElementById('game-surface');
