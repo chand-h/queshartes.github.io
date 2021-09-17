@@ -119,3 +119,4 @@ var InitDemo = function () {
   gl.drawArrays(gl.TRIANGLES, 0, 3);
   
 };
+
