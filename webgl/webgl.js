@@ -1,17 +1,16 @@
-var vertexShaderText = 
-[
-'precision mediump float;',
-'',
-'attribute vert2 vertPosition;',
-'attribute vert3 vertColor;',
-'varying vec3 fragColor;',
-'',
-'void main()',
-'{',
-'   fragColor = vertColor;',
-'  gl_Position = vec4(vertPosition, 0.0, 1.0);',
-'}' 
-].join('\n');
+var vertexShaderText = // note that this can now be shortcutted with multiline string indicator ` `
+`
+precision mediump float;
+
+attribute vert2 vertPosition;
+attribute vert3 vertColor;
+varying vec3 fragColor;
+
+void main()
+{
+  fragColor = vertColor;
+  gl_Position = vec4(vertPosition, 0.0, 1.0);
+}`;
 
 var fragmentShaderText =
 [
