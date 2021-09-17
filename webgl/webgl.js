@@ -3,9 +3,12 @@ var vertexShaderText =
 'precision mediump float;',
 '',
 'attribute vert2 vertPosition;',
+'attribute vert3 vertColor;',
+'varying vec3 fragColor;',
 '',
 'void main()',
 '{',
+'   fragColor = vertColor;',
 '  gl_Position = vec4(vertPosition, 0.0, 1.0);',
 '}' 
 ].join('\n');
@@ -14,9 +17,10 @@ var fragmentShaderText =
 [
 'precision mediump float',
 '',
+'varying vec3 fragColor;',
 'void main()',
 '{',
-'   gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);',
+'   gl_FragColor = vec4(vertColor, 1.0);',
 '}'
 ].join('\n');
 
@@ -76,10 +80,10 @@ var InitDemo = function () {
   // create buffer
   
   var triangleVertices =
-  [
-    0.0, 0.5,
-    -0.5, -0.5,
-    0.5, -0.5
+  [// X,  Y,       R,  G,  B
+    0.0, 0.5,     1.0, 1.0, 1.0,
+    -0.5, -0.5,   0.7, 0.0, 1.0,
+    0.5, -0.5,     0.1, 1.0, 0.6
   ];
   
   var triangleVertexBufferObject = gl.createBuffer();
@@ -87,16 +91,26 @@ var InitDemo = function () {
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(triangleVertices), gl.STATIC_DRAW);
   
   var positionAttribLocation = gl.getAttribLocation(program, 'vertPosition');
+  var colorAttribLocation = gl.getAttribLocation(program, 'vertColor');
   gl.vertexAttribPointer(
     positionAttribLocation, // attribute location
     2, // num of elements per attribute
     gl.FLOAT, // type of element
     gl.FALSE,
-    2 * Float32Array.BYTES_PER_ELEMENT, // size of an individual vertex
-    0 // offset
+    5 * Float32Array.BYTES_PER_ELEMENT, // size of an individual vertex
+    0 // offset from beginning of a vertex to this attribute
+  );
+  gl.vertexAttribPointer(
+    colorAttribLocation, // attribute location
+    3, // num of elements per attribute
+    gl.FLOAT, // type of element
+    gl.FALSE,
+    5 * Float32Array.BYTES_PER_ELEMENT, // size of an individual vertex
+    2 * Float32Array.BYTES_PER_ELEMENT, // offset from beginning of a vertex to this attribute
   );
   
   gl.enableVertexAttribArray(positionAttribLocation);
+  gl.enableVertexAttribArray(colorAttribLocation);
   
   // main render loop
   
