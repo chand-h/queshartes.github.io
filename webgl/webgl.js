@@ -65,6 +65,13 @@ var InitDemo() = function () {
   gl.linkProgram(program);
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
     console.error('ERROR LINKING PROGRAM!', gl.getProgramInfoLog(program));
+    return;
   }
+  gl.validateProgram(program);
+  if (!gl.getProgramParameter(program, gl.VALIDATE_STATUS)) {
+     console.error('ERROR VALIDATING PROGRAM!', gl.getProgramInfoLog(program));
+    return;
+  }
+  
   
 };
