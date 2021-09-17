@@ -73,4 +73,35 @@ var InitDemo = function () {
     return;
   }
   
+  // create buffer
+  
+  var triangleVertices =
+  [
+    0.0, 0.5,
+    -0.5, -0.5,
+    0.5, -0.5
+  ];
+  
+  var triangleVertexBufferObject = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexBufferObject);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(triangleVertices), gl.STATIC_DRAW);
+  
+  var positionAttribLocation = gl.getAttribLocation(program, 'vertPosition');
+  gl.vertexAttribPointer(
+    positionAttribLocation, // attribute location
+    2, // num of elements per attribute
+    gl.FLOAT, // type of element
+    gl.FALSE,
+    2 * Float32Array.BYTES_PER_ELEMENT, // size of an individual vertex
+    0 // offset
+  );
+  
+  gl.enableVertexAttribArray(positionAttribLocation);
+  
+  // main render loop
+  
+  gl.useProgram(program);
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+  
+  
 };
