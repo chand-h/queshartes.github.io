@@ -73,5 +73,4 @@ var InitDemo = function () {
     return;
   }
   
-  
 };
