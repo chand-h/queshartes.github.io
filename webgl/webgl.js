@@ -2,8 +2,8 @@ var vertexShaderText =
 `
 precision mediump float;
 
-attribute vert2 vertPosition;
-attribute vert3 vertColor;
+attribute vec2 vertPosition;
+attribute vec3 vertColor;
 varying vec3 fragColor;
 
 void main()
